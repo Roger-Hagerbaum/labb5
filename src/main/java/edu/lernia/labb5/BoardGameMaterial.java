@@ -4,9 +4,10 @@ import java.util.Scanner;
 
 public class BoardGameMaterial {
     public static boolean gameIsOn = true;
+    static Dice[] dice = Dice.createDie();
     protected static void startGame(){
         int turn = 0;
-        Dice[] dice = Dice.createDie();
+
         System.out.println("Welcome to Yatzy!");
         while(turn < 3) {
             System.out.println("Starting turn " + (turn+1) + " of 3, rolling dice.");
@@ -14,15 +15,10 @@ public class BoardGameMaterial {
                 dice[i].DieRoll();
                 System.out.println(i + ": " + dice[i].getString());
             }
-            //YATZI
-            boolean flag = true;
-            for(int j=1;j<5;j++) {
-                if(dice[j].value!= dice[j-1].value) {
-                    //Set flag to false
-                    flag = false;
-                }
-            }
-            if(flag == true) {
+            //YATZY
+            boolean yatzy = checkIfYatsy();
+
+            if(yatzy) {
                 System.out.println("You got YATZI! in " + dice[0].value + "'s");
                 return;
             } else {
@@ -48,5 +44,15 @@ public class BoardGameMaterial {
                 }
             }
         }
+    }
+
+    protected static boolean checkIfYatsy(){
+        for(int j=1;j<5;j++) {
+            if(dice[j].value != dice[j-1].value) {
+                //Set yatzy to false
+                return false;
+            }
+    }
+        return true;
     }
 }
