@@ -2,23 +2,25 @@ package edu.lernia.labb5;
 
 import org.junit.jupiter.api.Test;
 
+import static org.junit.jupiter.api.Assertions.*;
+
 public class YatziTest {
     @Test
     void isYatziWhenAllDiceMatches() {
-        Dice[] dice = new Dice[5];
+        Dice[] dice = Dice.createDie();
         for(Dice die: dice) {
-            die.value = 6;
+            die.setValue(6);
         }
-        //Assert something?
+        assertTrue(YatzyGame.checkIfYatsy(dice));
     }
 
     @Test
     void isNotYatziWhenOneDieIsNotMatchingTheOther() {
-        Dice[] dice = new Dice[5];
+        Dice[] dice = Dice.createDie();
         for(Dice die: dice) {
-            die.value = 6;
+            die.setValue(6);
         }
-        dice[5].value = 1;
-        //Assert something?
+        dice[4].setValue(4);
+        assertFalse(YatzyGame.checkIfYatsy(dice));
     }
 }

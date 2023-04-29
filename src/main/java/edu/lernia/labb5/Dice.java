@@ -18,13 +18,16 @@ public class Dice extends YatzyGame {
         return dice;
     }
     private void setDieValue() {
-        value = (int)(Math.random()*6+1);
+        setValue((int) (Math.random()*6+1));
     }
     public String getString() {
         return "Dice shows " + value;
     }
     protected int getValue() {
         return value;
+    }
+    protected void setValue(int value){
+     this.value = value;
     }
 
 }

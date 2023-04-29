@@ -37,7 +37,7 @@ public class YatzyGame {
         }
     }
 
-    private static boolean checkIfYatsy(Dice[] dice) {
+    protected static boolean checkIfYatsy(Dice[] dice) {
         for (int j = 1; j < 5; j++) {
             if (dice[j].getValue() != dice[j - 1].getValue()) {
                 return false;
